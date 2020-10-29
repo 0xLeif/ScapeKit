@@ -13,14 +13,22 @@ public struct ScapeSkill {
     public var currentExperience: Int
     public var maxLevel: Int
     
-    public init(name: String, currentLevel: Int, maxLevel: Int) {
+    public init(
+        name: String,
+        currentLevel: Int = 1,
+        maxLevel: Int = 99
+    ) {
         self.name = name
         self.currentLevel = currentLevel
         self.currentExperience = ScapeSkill.experience(forLevel: currentLevel)
         self.maxLevel = maxLevel
     }
     
-    public init(type: ScapeSkillType, currentLevel: Int, maxLevel: Int) {
+    public init(
+        type: ScapeSkillType,
+        currentLevel: Int = 1,
+        maxLevel: Int = 99
+    ) {
         self.name = type.name
         self.currentLevel = currentLevel
         self.currentExperience = ScapeSkill.experience(forLevel: currentLevel)
