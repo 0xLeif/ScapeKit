@@ -8,17 +8,21 @@
 import Foundation
 
 public struct ScapeSkill {
+    public var type: ScapeSkillType
     public var name: String
     public var currentLevel: Int
     public var currentExperience: Int
     public var maxLevel: Int
+    public var actions: [SkillLevelAction] = []
     
     public init(
         name: String,
+        type: ScapeSkillType,
         currentLevel: Int = 1,
         maxLevel: Int = 99
     ) {
         self.name = name
+        self.type = type
         self.currentLevel = currentLevel
         self.currentExperience = ScapeSkill.experience(forLevel: currentLevel)
         self.maxLevel = maxLevel
@@ -30,9 +34,26 @@ public struct ScapeSkill {
         maxLevel: Int = 99
     ) {
         self.name = type.name
+        self.type = type
         self.currentLevel = currentLevel
         self.currentExperience = ScapeSkill.experience(forLevel: currentLevel)
         self.maxLevel = maxLevel
+    }
+}
+
+// MARK: action
+
+public extension ScapeSkill {
+    func use(actionNamed name: String) -> SkillActionResult? {
+        actions
+            .first(where: { $0.name == name })?
+            .result(forLevel: currentLevel)
+    }
+    
+    func use(actionNamed name: String) -> String {
+        actions
+            .first(where: { $0.name == name })?
+            .resultDescription(forLevel: currentLevel) ?? "The Skill \(name) does not contain an action named: \(name)"
     }
 }
 
