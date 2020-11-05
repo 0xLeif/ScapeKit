@@ -6,7 +6,7 @@
 //
 
 
-public enum SkillActionResult {
+public enum SkillActionResult: Equatable {
     case fail
     case succeed(Int)
 }
@@ -22,6 +22,11 @@ public protocol SkillLevelAction {
 public struct ScapeSkillAction: SkillLevelAction {
     public var name: String
     public var level: Int
+    
+    public init(name: String, level: Int) {
+        self.name = name
+        self.level = level
+    }
     
     public func result(forLevel level: Int) -> SkillActionResult {
         guard level >= self.level else {
