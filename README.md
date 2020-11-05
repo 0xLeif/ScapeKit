@@ -5,16 +5,38 @@ A package to manage Skills, Levels, and Experience.
 ## Example
 
 ```swift
-var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
-   currentLevel: 1,
-   maxLevel: 99)
+let character = ScapeCharacter(name: "Hans")
 
-skill.levelUp(levels: 5)
+XCTAssertEqual(character.skills[.ranged]?.name, "Ranged")
+XCTAssertEqual(character.skills[.ranged]?.currentLevel, 1)
+XCTAssertEqual(character.skills[.ranged]?.maxLevel, 99)
+XCTAssertEqual(character.skills[.ranged]?.currentExperience, 0)
 
-XCTAssertEqual(skill.name, "Ranged")
-XCTAssertEqual(skill.currentLevel, 6)
-XCTAssertEqual(skill.maxLevel, 99)
-XCTAssertEqual(skill.currentExperience, 512)
+XCTAssertEqual(character.skills.count, 23)
+XCTAssertEqual(character.totalLevel, 23)
+
+XCTAssertEqual(character.skills[.ranged]?.name, "Ranged")
+XCTAssertEqual(character.skills[.ranged]?.currentLevel, 1)
+XCTAssertEqual(character.skills[.ranged]?.maxLevel, 99)
+XCTAssertEqual(character.skills[.ranged]?.currentExperience, 0)
+
+let nonexistentActionName = "Some Action"
+
+let skillActionResult = character.skills[.ranged]?.roll(actionNamed: nonexistentActionName)
+let skillActionResultText = character.skills[.ranged]?.use(actionNamed: nonexistentActionName)
+
+XCTAssertNil(skillActionResult)
+XCTAssertEqual(skillActionResultText, "The Skill Some Action does not contain an action named: \(nonexistentActionName)")
+
+let skillAction = ScapeSkillAction(name: "Arrow Volley", level: 10)
+
+character.skills[.ranged]?.actions.append(skillAction)
+
+let skillActionResult = character.skills[.ranged]?.roll(actionNamed: "Arrow Volley")
+let skillActionResultText = character.skills[.ranged]?.use(actionNamed: "Arrow Volley")
+
+XCTAssertEqual(skillActionResult, SkillActionResult.fail)
+XCTAssertEqual(skillActionResultText, "Arrow Volley (Required Level: 10): Failed for level 1")
 ```
 
 ***
