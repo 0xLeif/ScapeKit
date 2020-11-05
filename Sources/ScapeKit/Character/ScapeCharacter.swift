@@ -9,7 +9,9 @@ public struct ScapeCharacter {
     public var name: String
     
     public var skills: [ScapeSkillType: ScapeSkill] = ScapeSkillType.allCases.reduce(into: [:]) { (skills, type) in
-        skills[type] = ScapeSkill(type: type, currentLevel: 1, maxLevel: 99)
+        skills[type] = ScapeSkill(type: type,
+                                  currentLevel: 1,
+                                  maxLevel: 99)
     }
 }
 
