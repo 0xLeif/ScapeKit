@@ -13,6 +13,15 @@ public struct ScapeCharacter {
                                   currentLevel: 1,
                                   maxLevel: 99)
     }
+    
+    public init(name: String) {
+        self.name = name
+    }
+    
+    public init(name: String, skills: [ScapeSkillType: ScapeSkill]) {
+        self.name = name
+        self.skills = skills
+    }
 }
 
 

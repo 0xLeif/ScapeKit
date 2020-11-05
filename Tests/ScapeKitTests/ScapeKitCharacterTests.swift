@@ -22,6 +22,15 @@ final class ScapeKitCharacterTests: XCTestCase {
         XCTAssertEqual(character.totalLevel, 23)
     }
     
+    func testCharacter_noSkills() {
+        let character = ScapeCharacter(name: "Hans", skills: [:])
+        
+        XCTAssertNil(character.skills[.ranged])
+        
+        XCTAssertEqual(character.skills.count, 0)
+        XCTAssertEqual(character.totalLevel, 0)
+    }
+    
     func testCharacter_ranged10() {
         var character = ScapeCharacter(name: "Hans")
         
@@ -55,6 +64,7 @@ final class ScapeKitCharacterTests: XCTestCase {
 
     static var allTests = [
         ("testCharacter", testCharacter),
+        ("testCharacter_noSkills", testCharacter_noSkills),
         ("testCharacter_ranged10", testCharacter_ranged10),
         ("testCharacter_maxed", testCharacter_maxed)
     ]
