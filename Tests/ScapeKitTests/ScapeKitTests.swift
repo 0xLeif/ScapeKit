@@ -13,6 +13,18 @@ final class ScapeKitTests: XCTestCase {
         XCTAssertEqual(skill.currentExperience, 0)
     }
     
+    func testSkillCustomName() {
+        let skill = ScapeSkill(name: "Archery",
+                               type: ScapeSkillType.ranged,
+                               currentLevel: 1,
+                               maxLevel: 99)
+        
+        XCTAssertEqual(skill.name, "Archery")
+        XCTAssertEqual(skill.currentLevel, 1)
+        XCTAssertEqual(skill.maxLevel, 99)
+        XCTAssertEqual(skill.currentExperience, 0)
+    }
+    
     func testSkillLevelUp_1() {
         var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
