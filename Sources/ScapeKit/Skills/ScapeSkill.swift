@@ -44,7 +44,7 @@ public struct ScapeSkill {
 // MARK: action
 
 public extension ScapeSkill {
-    func use(actionNamed name: String) -> SkillActionResult? {
+    func roll(actionNamed name: String) -> SkillActionResult? {
         actions
             .first(where: { $0.name == name })?
             .result(forLevel: currentLevel)
