@@ -9,7 +9,18 @@ public struct ScapeCharacter {
     public var name: String
     
     public var skills: [ScapeSkillType: ScapeSkill] = ScapeSkillType.allCases.reduce(into: [:]) { (skills, type) in
-        skills[type] = ScapeSkill(name: type.name, currentLevel: 0, maxLevel: 99)
+        skills[type] = ScapeSkill(type: type,
+                                  currentLevel: 1,
+                                  maxLevel: 99)
+    }
+    
+    public init(name: String) {
+        self.name = name
+    }
+    
+    public init(name: String, skills: [ScapeSkillType: ScapeSkill]) {
+        self.name = name
+        self.skills = skills
     }
 }
 
@@ -17,8 +28,8 @@ public struct ScapeCharacter {
 public extension ScapeCharacter {
     var totalLevel: Int {
         skills
-            .map { (key, value) in
-                value.currentLevel
+            .map {
+                $1.currentLevel
             }
             .reduce(0, +)
     }

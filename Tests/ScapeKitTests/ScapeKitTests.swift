@@ -3,7 +3,7 @@ import XCTest
 
 final class ScapeKitTests: XCTestCase {
     func testSkill() {
-        let skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        let skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -13,8 +13,20 @@ final class ScapeKitTests: XCTestCase {
         XCTAssertEqual(skill.currentExperience, 0)
     }
     
+    func testSkillCustomName() {
+        let skill = ScapeSkill(name: "Archery",
+                               type: ScapeSkillType.ranged,
+                               currentLevel: 1,
+                               maxLevel: 99)
+        
+        XCTAssertEqual(skill.name, "Archery")
+        XCTAssertEqual(skill.currentLevel, 1)
+        XCTAssertEqual(skill.maxLevel, 99)
+        XCTAssertEqual(skill.currentExperience, 0)
+    }
+    
     func testSkillLevelUp_1() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -27,7 +39,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelUp_5() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -40,7 +52,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelUp_10() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -53,7 +65,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelUp_98() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -66,7 +78,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelUp_99() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -79,7 +91,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelUp_100() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -92,7 +104,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_1_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -105,7 +117,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_5_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -118,7 +130,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_10_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -131,7 +143,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_98_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -144,7 +156,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_99_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -157,7 +169,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillGainExperience_100_Level() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 1,
                                maxLevel: 99)
         
@@ -170,7 +182,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_1() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
@@ -183,7 +195,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_5() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
@@ -196,7 +208,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_10() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
@@ -209,7 +221,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_98() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
@@ -222,7 +234,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_99() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
@@ -235,7 +247,7 @@ final class ScapeKitTests: XCTestCase {
     }
     
     func testSkillLevelDown_100() {
-        var skill = ScapeSkill(name: ScapeSkillType.ranged.name,
+        var skill = ScapeSkill(type: ScapeSkillType.ranged,
                                currentLevel: 99,
                                maxLevel: 99)
         
